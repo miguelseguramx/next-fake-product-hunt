@@ -4,7 +4,7 @@ import ProductDetails from '../components/Layouts/ProductDetails';
 import useProducts from '../hooks/useProducts';
 
 const Home = () => {
-  const { products } = useProducts('created');
+  const { products } = useProducts('votes');
   return (
     <Layout>
       <div className="product-list">

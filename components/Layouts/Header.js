@@ -31,7 +31,7 @@ const Header = () => {
               <Link href="/login">
                 <Button callToAction="true">Login</Button>
               </Link>
-              <Link href="/sing-up">
+              <Link href="/singup">
                 <Button>Crear una cuenta</Button>
               </Link>
             </>

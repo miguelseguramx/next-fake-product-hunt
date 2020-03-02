@@ -8,6 +8,7 @@ import Error404 from '../../components/Layouts/404';
 import { ProductContainer } from '../../components/StyleComponents/Product';
 import { InputSpace, Submit } from '../../components/StyleComponents/Form';
 import Button from '../../components/StyleComponents/Button';
+import LoadingProduct from '../../components/LoadingScreens/LoadingProduct';
 
 const Product = () => {
   const [ hasVoted, setHasVoted ] = useState(false)
@@ -38,8 +39,8 @@ const Product = () => {
     } 
   }, [id])
 
-  // TODO: Add a beautiful loading component 
-  if (Object.keys(product).length === 0 && !error) return <p>Cargando...</p>
+  // // TODO: Add a beautiful loading component 
+  // if (Object.keys(product).length === 0 && !error) return <p>Cargando...</p>
 
   const { comments, created, description, enterprise, name, url, urlImage, votes, author, haveVoted } = product
 
@@ -139,88 +140,90 @@ const Product = () => {
   return (
     <Layout>
       <>
-        { error ? <Error404 /> : (
-          <ProductContainer>
-            <h1 className="product__title">{name}</h1>
-            <div className="product__container">
-              <div>
-                <p>Publicado hace: { formatDistanceToNow( new Date(created), {locale: es} )} </p>
-                <p>Por: {author.name} de {enterprise} </p>
-                <img src={urlImage} />
-                <p>{description}</p>
-                
-                { user && (
-                  <>
-                    <h2>Agrega tu comentario</h2>
-                    <form
-                      onSubmit={handleSubmit}
-                    >
-                      <InputSpace>
-                        <input
-                          type="text"
-                          name="content"
-                          value={content}
-                          onChange={handleChange}
-                          placeholder="Ingresa tu commentario"
+        { Object.keys(product).length === 0 && !error ? <LoadingProduct /> : (
+           error ? <Error404 /> : (
+            <ProductContainer>
+              <h1 className="product__title">{name}</h1>
+              <div className="product__container">
+                <div>
+                  <p>Publicado hace: { formatDistanceToNow( new Date(created), {locale: es} )} </p>
+                  <p>Por: {author.name} de {enterprise} </p>
+                  <img src={urlImage} />
+                  <p>{description}</p>
+                  
+                  { user && (
+                    <>
+                      <h2>Agrega tu comentario</h2>
+                      <form
+                        onSubmit={handleSubmit}
+                      >
+                        <InputSpace>
+                          <input
+                            type="text"
+                            name="content"
+                            value={content}
+                            onChange={handleChange}
+                            placeholder="Ingresa tu commentario"
+                          />
+                        </InputSpace>
+                        <Submit
+                          type="submit"
+                          value="Agregar comentario"
                         />
-                      </InputSpace>
-                      <Submit
-                        type="submit"
-                        value="Agregar comentario"
-                      />
-                    </form>
-                  </>
-                )}
-
-                <h2 className="comment__title">Comentarios</h2>
-                { comments.length === 0 ? <p>Aun no hay commentarios</p> : (
-                  <ul>
-                    {comments.map((comment, i) => (
-                      <li key={comment.userId + i} className="comment__content">
-                        <p>{comment.content}</p>
-                        <div className="author__details">
-                          <p>
-                            Escrito por  <span>{comment.userName}</span>
-                          </p>
-                          { isAuthor(comment.userId) && <p className="author__details-isauthor">Es creador</p>}
-                        </div>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-                
-              </div>
-              <aside>
-                <Button
-                  target="_blank"
-                  callToAction="true"
-                  href={url}
-                >Visitar Url</Button>
-                
-                <div className="product__votes">
-                  <p className="product__votes-p">{votes} Votos</p>
-                  { user && ( 
-                    <Button
-                      onClick={handleVote}
-                    >
-                      Votar
-                    </Button>
+                      </form>
+                    </>
                   )}
-                  { hasVoted && 
-                    <p className="product__votes-voted">Ya has votado por este producto</p>}
-                </div>
-              </aside>
-            </div>
 
-            { canDelete() &&
-              <div className="product__delete">
-                <Button
-                  onClick={deleteProduct}
-                  callToAction="true"
-                >Eliminar producto</Button>
+                  <h2 className="comment__title">Comentarios</h2>
+                  { comments.length === 0 ? <p>Aun no hay commentarios</p> : (
+                    <ul>
+                      {comments.map((comment, i) => (
+                        <li key={comment.userId + i} className="comment__content">
+                          <p>{comment.content}</p>
+                          <div className="author__details">
+                            <p>
+                              Escrito por  <span>{comment.userName}</span>
+                            </p>
+                            { isAuthor(comment.userId) && <p className="author__details-isauthor">Es creador</p>}
+                          </div>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                  
+                </div>
+                <aside>
+                  <Button
+                    target="_blank"
+                    callToAction="true"
+                    href={url}
+                  >Visitar Url</Button>
+                  
+                  <div className="">
+                    <p className="product__votes-p">{votes} Votos</p>
+                    { user && ( 
+                      <Button
+                        onClick={handleVote}
+                      >
+                        Votar
+                      </Button>
+                    )}
+                    { hasVoted && 
+                      <p className="product__votes-voted">Ya has votado por este producto</p>}
+                  </div>
+                </aside>
               </div>
-            }
-          </ProductContainer>
+
+              { canDelete() &&
+                <div className="product__delete">
+                  <Button
+                    onClick={deleteProduct}
+                    callToAction="true"
+                  >Eliminar producto</Button>
+                </div>
+              }
+            </ProductContainer>
+          )
         )}
       </> 
     </Layout>

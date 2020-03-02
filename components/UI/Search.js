@@ -8,18 +8,27 @@ const FormContainer = styled('form')`
   input{
     border: 1px solid var(--gray-three);
     padding: 1rem;
-    min-width: 300px;
+    min-width: calc(100vw - 110px);
+    
+    @media (min-width: 576px) {
+      min-width: calc(100vw - 100px);
+    }
+
+    @media (min-width: 768px) {
+      min-width: 300px;
+    }
   }
   button{
     height: 3rem;
     width: 3rem;
     display: block;
     background-size: 4rem;
-    background-image: url('/static/img/search.png');
+    background-image: url(/static/img/search.png);
     background-repeat: no-repeat;
     position: absolute;
+    background-position: 0;
     right: 1rem;
-    top: 1px;
+    top: 5px;
     background-color: white;
     text-indent: -9000px;
     border: none;

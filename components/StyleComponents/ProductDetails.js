@@ -1,57 +1,68 @@
 import styled from '@emotion/styled';
 
 export const Product = styled('li')`
-  padding: 4rem;
+  padding: 2rem;
+  margin: 0rem 0rem 2rem;
+  background-color: #FFF;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
-  border-bottom: 1px solid var(--gray-three);
-`
-export const ProductDescription = styled('div')`
-    flex: 0 1 600px;
+  justify-content: center;
+
+  @media (min-width: 768px) { 
+    padding: 4rem;
     display: grid;
-    grid-template-columns: 1fr 3fr;
+    grid-template-columns: 1fr 4fr .6fr;
     column-gap: 2rem;
+  }
+`
+
+export const ProductImage = styled('div')`
+
+`;
+
+export const ProductDescription = styled('div')`
+
 `;
 
 export const Title = styled('a')`
-    font-size: 2rem;
-    font-weight: bold;
-    margin: 0;
-    :hover {
-        cursor: pointer;
-    }
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 0;
+  :hover {
+    cursor: pointer;
+  }
 `;
 
 export const Description = styled('p')`
-    font-size: 1.6rem;
-    margin: 0;
-    color: #888;
+  font-size: 1.7rem;
+  margin: 0;
+  color: #888;
 `
 
 export const Coments = styled('div')`
-    margin-top: 2rem;
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  div {
     display: flex;
     align-items: center;
-    div {
-        display: flex;
-        align-items: center;
-        border: 1px solid #e1e1e1;
-        padding: .3rem 1rem;
-        margin-right: 2rem;
+    border: 1px solid #e1e1e1;
+    padding: .3rem 1rem;
+    margin-right: 2rem;
+  }
+  img {
+    width: 2rem;
+    margin-right: 2rem;
+  }
+  p {
+    font-size: 1.6rem;
+    margin-right: 1rem;
+    font-weight: 700;
+    &:last-of-type {
+        margin: 0;
     }
-    img {
-        width: 2rem;
-        margin-right: 2rem;
-    }
-    p {
-        font-size: 1.6rem;
-        margin-right: 1rem;
-        font-weight: 700;
-        &:last-of-type {
-            margin: 0;
-        }
-    }
+  }
 `;
 
 export const Image = styled('img')`
@@ -59,16 +70,29 @@ export const Image = styled('img')`
 `
 
 export const Votes = styled('div')`
-    flex: 0 0 auto;
-    text-align: center; 
-    border: 1px solid var(--gray-three);
-    padding: 1rem 3rem;
-    div {
-        font-size: 2rem;
-    }
-    p {
-        margin: 0;
-        font-size: 2rem;
-        font-weight: 700;
-    }
+  text-align: center; 
+  border: 2px solid var(--gray-three);
+  width: 100%;
+
+  div {
+    font-size: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  p {
+    display: block;
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 700;
+  }
+
+ .votes__simbol {
+   font-size: 3rem;
+ }
+
+  @media (min-width: 768px) { 
+    padding: 2rem 2rem;
+  }
 `;

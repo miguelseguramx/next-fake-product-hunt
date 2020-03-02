@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import Router, { useRouter } from 'next/router';
 import FileUploader from 'react-firebase-file-uploader';
+import { css } from '@emotion/core';
 import Layout from '../components/Layouts/Layout';
 import { Form, InputSpace, TitleCenter, Submit, Error } from '../components/StyleComponents/Form';
 import Error404 from '../components/Layouts/404';
@@ -133,6 +134,9 @@ const NewProduct = () => {
               <InputSpace>
                 <label htmlFor="image">Imagen</label>
                 <FileUploader
+                  css={css(`
+                    width: 100px;
+                  `)}
                   accept="images/*"
                   id="image"
                   name="image"

@@ -22,7 +22,13 @@ const HeaderContainer = styled('header')`
   }
 
   .container__left {
+    display: flex;
     flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    @media (min-width: 768px) {
+      flex-wrap: nowrap;
+    }
   }
 
   .container__right {

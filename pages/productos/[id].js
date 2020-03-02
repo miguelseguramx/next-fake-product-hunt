@@ -69,6 +69,7 @@ const Product = () => {
     setProduct({
       ...product,
       votes: newTotal,
+      haveVoted: hasVoted
     })
 
     setConsultDB(true);
@@ -184,7 +185,7 @@ const Product = () => {
                             <p>
                               Escrito por  <span>{comment.userName}</span>
                             </p>
-                            { isAuthor(comment.userId) && <p className="author__details-isauthor">Es creador</p>}
+                            { isAuthor(comment.userId) && <p className="author__details-isauthor">Creador</p>}
                           </div>
                         </li>
                       ))}
@@ -201,6 +202,8 @@ const Product = () => {
                   
                   <div className="">
                     <p className="product__votes-p">{votes} Votos</p>
+                    { hasVoted && 
+                      <p className="product__votes-voted">Ya has votado por este producto</p>}
                     { user && ( 
                       <Button
                         onClick={handleVote}
@@ -208,8 +211,6 @@ const Product = () => {
                         Votar
                       </Button>
                     )}
-                    { hasVoted && 
-                      <p className="product__votes-voted">Ya has votado por este producto</p>}
                   </div>
                 </aside>
               </div>

@@ -19,8 +19,11 @@ export const InputSpace = styled('div')`
   align-items: center;
   
   label {
-    flex: 0 0 150px;
+    flex: 0 0 100px;
     font-size: 1.8rem;
+    @media (min-width: 576px) {
+      flex: 0 0 150px;
+    }
   }
 
   textarea,

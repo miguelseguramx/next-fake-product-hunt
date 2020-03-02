@@ -11,7 +11,7 @@ const Home = () => {
       { false ? <LoadingProduct /> : (
         <div className="product-list">
           <div className="container">
-            <ul className="bg-white">
+            <ul>
               {products.map( product => (
                 <ProductDetails 
                   product={product}

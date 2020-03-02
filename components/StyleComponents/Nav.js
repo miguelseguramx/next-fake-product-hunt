@@ -1,8 +1,12 @@
 import styled from '@emotion/styled';
 
 const Nav = styled('nav')`
+  display: flex;
   padding-left: 0rem;
+  width: 90%;
   margin: 1rem auto;
+  justify-content: space-around;
+
 
   a {
     font-size: 1.8rem;
